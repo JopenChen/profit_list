@@ -1,124 +1,73 @@
-<!--
-	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=line-simple
--->
+
 <!DOCTYPE html>
 <html lang="en" style="height: 100%">
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
 </head>
 <body style="height: 100%; margin: 0">
-  <div id="container" style="height: 100%"></div>
+<div id="container" style="height: 100%"></div>
 
-  
-  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js"></script>
-  
-  <!-- Uncomment this line if you want to dataTool extension
-  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.5.1/files/dist/extension/dataTool.min.js"></script>
-  -->
-  <!-- Uncomment this line if you want to use gl extension
-  <script type="text/javascript" src="https://registry.npmmirror.com/echarts-gl/2/files/dist/echarts-gl.min.js"></script>
-  -->
-  <!-- Uncomment this line if you want to echarts-stat extension
-  <script type="text/javascript" src="https://registry.npmmirror.com/echarts-stat/latest/files/dist/ecStat.min.js"></script>
-  -->
-  <!-- Uncomment this line if you want to echarts-graph-modularity extension
-  <script type="text/javascript" src="https://registry.npmmirror.com/echarts-graph-modularity/2/files/dist/echarts-graph-modularity.min.js"></script>
-  -->
-  <!-- Uncomment this line if you want to use map
-  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/4.9.0/files/map/js/world.js"></script>
-  -->
-  <!-- Uncomment these two lines if you want to use bmap extension
-  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
-  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.5.1/files/dist/extension/bmap.min.js"></script>
-  -->
 
-  <script type="text/javascript">
+<script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js"></script>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
     var dom = document.getElementById('container');
     var myChart = echarts.init(dom, null, {
-      renderer: 'canvas',
-      useDirtyRect: false
+        renderer: 'canvas',
+        useDirtyRect: false
     });
     var app = {};
-    
+
     var option;
 
     option = {
-      tooltip: {
-    trigger: 'axis',
-    formatter: function (params) {
-          // params is an array of objects, each object represents a series
-          let result = '';
-          params.forEach(item => {
-            result += item.seriesName + ': ' + item.value + ' %<br/>'; // Add unit here
-          });
-          return result;
-        }
-  },
-  grid: {
-    left: '3%',
-    right: '4%',
-    bottom: '3%',
-    containLabel: true
-  },
-  xAxis: {
-    type: 'category',
-    data: ['11/1', '11/4', '11/5', '11/6', '11/7', '11/8', '11/11','11/12', '11/13', '11/14', '11/15', '11/18', '11/19', '11/20','11/21', '11/22', '11/25', '11/26', '11/27', '11/28', '11/29']
-  },
-  yAxis: {
-    name: '盈亏比 %',
-    type: 'value',
-    axisLabel: {        // 设置标签样式
-        formatter: '{value} %' // 格式化标签，添加百分号
-    }
-  },
-  legend: {
-    data: ['赵yp', '多多', '招财斌', '气运哥', '三']
-  },
-  series: [
-    {
-      name: '赵yp',
-      data: [10, 23, 14, 28, 35, 47, 60],
-      type: 'line',
-      label: {
-            show: true,
-            position: 'top',
+        tooltip: {
+            trigger: 'axis',
             formatter: function (params) {
-              // if (params.dataIndex === params.seriesData.length - 1) {
-              //   return params.value + ' %'+ '(上海贝岭、东方财富)'; // Show value with unit on the last point
-              // } else {
-              //   return params.value + ' %';
-              // }
-              console.log(params)
-              return params.value + ' %' + params.data;
+                
+                let result = '';
+                params.forEach(item => {
+                    result += item.seriesName + ': ' + item.value + ' %<br/>'; 
+                });
+                return result;
             }
-          }
-    },
-    {
-      name: '多多',
-      data: [-10, 10, 22, 28, 32, 47, 60],
-      type: 'line',
-      label: {
-            show: true,
-            position: 'top',
-            formatter: function (params) {
-              // if (params.dataIndex === params.seriesData.length - 1) {
-              //   return params.value + ' %'+ '(欧菲光)'; // Show value with unit on the last point
-              // } else {
-              //   return params.value + ' %';
-              // }
-              console.log(params)
-              return params.value + ' %' + params.data;
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'category',
+            data: ["11/01","11/04","11/05","11/06","11/07","11/08","11/11","11/12","11/13","11/14","11/15","11/18","11/19","11/20","11/21","11/22","11/25","11/26","11/27","11/28","11/29"]
+            
+        },
+        yAxis: {
+            name: '盈亏比 %',
+            type: 'value',
+            axisLabel: {        
+                formatter: '{value} %' 
             }
-          }
-    }
-  ]
-};
+        },
+        legend: {
+            data: ["多多","测试者A","招财斌","木头人","赵yp"]
+        },
+        series: [{                name: '多多',                data: [0,0,0,0,0,0,0,0,0,1],                type: 'line',                label: {                    show: true,                    position: 'top',                    formatter: function (params) {                        const now = new Date();const month = (now.getMonth() + 1).toString().padStart(2, '0');const day = now.getDate().toString().padStart(2, '0');const formattedDate = `${month}/${day}`;console.log(formattedDate);if (params.name === formattedDate) {                return params.value + ' %'+ '(上海贝岭、东方财富)';              } else {                return params.value + ' %';              }                    }                }            },{                name: '测试者A',                data: [0,0,0,0,0,0,0,0,0,1.44],                type: 'line',                label: {                    show: true,                    position: 'top',                    formatter: function (params) {                        const now = new Date();const month = (now.getMonth() + 1).toString().padStart(2, '0');const day = now.getDate().toString().padStart(2, '0');const formattedDate = `${month}/${day}`;console.log(formattedDate);if (params.name === formattedDate) {                return params.value + ' %'+ '(上海贝岭、东方财富)';              } else {                return params.value + ' %';              }                    }                }            },{                name: '招财斌',                data: [0,-23,-7,-7,-7,-7,-7,-7,-7,-7],                type: 'line',                label: {                    show: true,                    position: 'top',                    formatter: function (params) {                        const now = new Date();const month = (now.getMonth() + 1).toString().padStart(2, '0');const day = now.getDate().toString().padStart(2, '0');const formattedDate = `${month}/${day}`;console.log(formattedDate);if (params.name === formattedDate) {                return params.value + ' %'+ '(上海贝岭、东方财富)';              } else {                return params.value + ' %';              }                    }                }            },{                name: '木头人',                data: [0,13,13,13,13,13,13,13,13,13],                type: 'line',                label: {                    show: true,                    position: 'top',                    formatter: function (params) {                        const now = new Date();const month = (now.getMonth() + 1).toString().padStart(2, '0');const day = now.getDate().toString().padStart(2, '0');const formattedDate = `${month}/${day}`;console.log(formattedDate);if (params.name === formattedDate) {                return params.value + ' %'+ '(上海贝岭、东方财富)';              } else {                return params.value + ' %';              }                    }                }            },{                name: '赵yp',                data: [0,2,2,2,2,2,2,2,2,2],                type: 'line',                label: {                    show: true,                    position: 'top',                    formatter: function (params) {                        const now = new Date();const month = (now.getMonth() + 1).toString().padStart(2, '0');const day = now.getDate().toString().padStart(2, '0');const formattedDate = `${month}/${day}`;console.log(formattedDate);if (params.name === formattedDate) {                return params.value + ' %'+ '(上海贝岭、东方财富)';              } else {                return params.value + ' %';              }                    }                }            }]
+    };
 
     if (option && typeof option === 'object') {
-      myChart.setOption(option);
+        myChart.setOption(option);
     }
 
     window.addEventListener('resize', myChart.resize);
-  </script>
+</script>
 </body>
 </html>
